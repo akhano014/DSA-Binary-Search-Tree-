@@ -95,27 +95,11 @@ bool SearchBST(Node*& root, int value) {
     }
 
     if (root->data > value) {
-        return SearchBST(root->Left, value);
+        return SearchBST(root->Left,value);
     }
     else {
         return SearchBST(root->Right, value);
     }
-}
-
-Node* MinimumvalueBST(Node*& root) {
-    Node* temp = root;
-    while (temp->Left != NULL) {
-        temp = temp->Left;
-    }
-    return temp;
-}
-
-Node* MaximumvalueBST(Node*& root) {
-    Node* temp = root;
-    while (temp->Right != NULL) {
-        temp = temp->Right;
-    }
-    return temp;
 }
 
 int main() {
@@ -130,8 +114,6 @@ int main() {
         cout << "4. Preorder Traversal\n";
         cout << "5. Postorder Traversal\n";
         cout << "6. Search in BST\n";
-        cout << "7. Minimum value in BST\n";
-        cout << "8. Maximum value in BST\n";
         cout << "0. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
@@ -175,28 +157,6 @@ int main() {
                 cout << "Value NOT FOUND in BST\n";
             break;
         }
-
-        case 7:
-            if (root == NULL)
-            {
-                cout << "BST is empty\n";
-            }
-            else
-            {
-                cout << "Minimum value in BST: " << MinimumvalueBST(root)->data << endl;
-            }
-            break;
-
-        case 8:
-            if (root == NULL)
-            {
-                cout << "BST is empty\n";
-            }
-            else
-            {
-                cout << "Maximum value in BST: " << MaximumvalueBST(root)->data << endl;
-            }
-            break;
 
         case 0:
             cout << "Exiting program...\n";
