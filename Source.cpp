@@ -118,48 +118,6 @@ Node* MaximumvalueBST(Node*& root) {
     return temp;
 }
 
-Node* DeleteBST(Node*& root, int value) {
-    if (root == NULL) {
-        return root;
-    }
-
-    if (root->data == value) {
-
-        if (root->Left == NULL && root->Right == NULL) {
-            delete root;
-            return NULL;
-        }
-
-        if (root->Left != NULL && root->Right == NULL) {
-            Node* temp = root->Left;
-            delete root;
-            return temp;
-        }
-
-        if (root->Left==NULL && root->Right!= NULL) {
-            Node* temp = root->Right;
-            delete root;
-            return temp;
-        }
-
-        if (root->Left != NULL && root->Right != NULL) {
-            int mini = MinimumvalueBST(root->Right)->data;
-            root->data = mini;
-            root->Right = DeleteBST(root->Right, mini);
-            return root;
-        }
-    }
-    else if (root->data > value) {
-        root->Left = DeleteBST(root->Left, value);
-        return root;
-    }
-    else {
-        root->Right = DeleteBST(root->Right, value);
-        return root;
-    }
-}
-
-
 int main() {
     Node* root = NULL;
     int choice;
@@ -174,13 +132,11 @@ int main() {
         cout << "6. Search in BST\n";
         cout << "7. Minimum value in BST\n";
         cout << "8. Maximum value in BST\n";
-        cout << "9. Delete a node from BST\n";
         cout << "0. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
-
         case 1:
             Takeinput(root);
             break;
@@ -222,33 +178,25 @@ int main() {
 
         case 7:
             if (root == NULL)
+            {
                 cout << "BST is empty\n";
+            }
             else
-                cout << "Minimum value in BST: "
-                << MinimumvalueBST(root)->data << endl;
+            {
+                cout << "Minimum value in BST: " << MinimumvalueBST(root)->data << endl;
+            }
             break;
 
         case 8:
             if (root == NULL)
+            {
                 cout << "BST is empty\n";
+            }
             else
-                cout << "Maximum value in BST: "
-                << MaximumvalueBST(root)->data << endl;
-            break;
-
-        case 9: {
-            int key;
-            cout << "Enter value to delete: ";
-            cin >> key;
-
-            if (root == NULL)
-                cout << "BST is empty\n";
-            else {
-                root = DeleteBST(root, key);
-                cout << "Node deleted (if existed)\n";
+            {
+                cout << "Maximum value in BST: " << MaximumvalueBST(root)->data << endl;
             }
             break;
-        }
 
         case 0:
             cout << "Exiting program...\n";
@@ -262,5 +210,4 @@ int main() {
 
     return 0;
 }
-
 
